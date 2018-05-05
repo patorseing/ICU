@@ -103,13 +103,14 @@ glimpse(mod)
 for (i in 1:ncol(mod)) {
     if(is.factor(mod[,i])){
         if(levels(mod[,i])[1]=="No"){
-            mod[,i] <- as.numeric(ifelse(mod[,i]=="No", 1,0))  
+            mod[,i] <- ifelse(mod[,i]=="No", "False","True")  
         } else if(levels(mod[,i])[1]=="Alive"){
-            mod[,i] <- as.numeric(ifelse(mod[,i]=="Alive", 0,1))  
+            mod[,i] <- ifelse(mod[,i]=="Alive", "True","False")
         }
     }
 }
 
 glimpse(mod)
 cor(mod)
+write.csv(mod, "extract_OL1.csv")
 
